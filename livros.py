@@ -3,8 +3,10 @@ Módulo de livros
 """
 import utils
 
+#lista dos livros
 livros=[]
 
+#lista de livros de exemplo
 exemplo_livros=[
     {'id':1,'nome':'Livro 1','autor':'Autor 1','ano':2000,'editora':'editora 1','estado':'disponível','leitor':None,'nr_emprestimos':0},
     {'id':2,'nome':'Livro 2','autor':'Autor 1','ano':2000,'editora':'editora 1','estado':'disponível','leitor':None,'nr_emprestimos':0},
@@ -12,9 +14,13 @@ exemplo_livros=[
 ]
 
 def configurar():
+    """Adiciona livros de exemplo"""
+    
     livros.extend(exemplo_livros)
 
 def menu_livros():
+    """Menu dos livros"""
+    
     while True:
         utils.mostrar_menu("Menu Livros",["Adicionar","Listar","Editar","Apagar","Voltar"])
         op = utils.le_numero("Opção: ")
@@ -30,6 +36,7 @@ def menu_livros():
             pass
 
 def adicionar():
+    """Adiciona um livro novo à lista de livros"""
     #nome
     nome=utils.le_texto("Nome do livro:",3)
     #autor
@@ -56,9 +63,18 @@ def adicionar():
     print(f"Livro adicionado com sucesso. Tem {len(livros)} livros.")
 
 def listar():
-    print("#"*40)
+    """Lista os livros todos da lista"""
+    print("#"*80)
     print("Lista de livros")
-    print("#"*40)
+    print("#"*80)
     for livro in livros:
         print(f"Id: {livro['id']} Nome: {livro['nome']} Autor: {livro['autor']} Estado: {livro['estado']}")
-        print("-"*40)
+        print("-"*80)
+
+def editar():
+    """Edita os dados de um livro"""
+    pass
+
+def apagar():
+    """Remove um livro da lista"""
+    pass

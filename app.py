@@ -14,6 +14,7 @@ import utils, livros
 DEBUG=True
 
 def menu_principal():
+    """Menu principal da aplicação"""
     while True:
         utils.mostrar_menu("Menu Principal",["Livros","Leitores","Empréstimos e devoluções","Estatísticas","Sair"])
         op = utils.le_numero("Opção: ")
