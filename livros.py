@@ -71,6 +71,13 @@ def listar():
         print(f"Id: {livro['id']} Nome: {livro['nome']} Autor: {livro['autor']} Estado: {livro['estado']}")
         print("-"*80)
 
+def get_livro(id):
+    """Função que pesquisa o dicionário com o id fornecido e devolve o livro ou None"""
+    for livro in livros:
+        if livro['id']==id:
+            return livro
+    return None
+
 def editar():
     """Edita os dados de um livro"""
     pass
