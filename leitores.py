@@ -48,6 +48,14 @@ def adicionar():
     print(f"Leitor adicionado com sucesso. Tem {len(leitores)} leitores.")
 
 def listar():
+    """Mostra a lista de todos os leitores"""
     print("Lista de leitores")
     for leitor in leitores:
         print(f"Id: {leitor['id']} \tNome: {leitor['nome']} \tEmail:{leitor['email']}")
+
+def get_leitor(id):
+    """Devolve os dados de um leitor com base no id"""
+    for leitor in leitores:
+        if leitor['id']==id:
+            return leitor
+    return None
