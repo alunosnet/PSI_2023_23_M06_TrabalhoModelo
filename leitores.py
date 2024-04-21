@@ -1,7 +1,7 @@
 """
 Módulo Leitores
 """
-import utils
+import utils, emprestimos
 
 #lista de leitores
 leitores=[]
@@ -28,11 +28,12 @@ def menu_leitores():
         if op==2:
             listar()
         if op==3:
-            pass
+            editar()
         if op==4:
-            pass
+            apagar()
     
 def adicionar():
+    """Função para ler os dados de um leitor e adicionar à lista dos leitores"""
     nome=utils.le_texto("Nome:",3)
     email=utils.le_email("Email:")
     #adicionar à lista
@@ -59,3 +60,35 @@ def get_leitor(id):
         if leitor['id']==id:
             return leitor
     return None
+
+def editar():
+    """Edita os dados de um leitor com base no id"""
+    id_leitor=utils.le_numero("Id do leitor a editar:")
+    leitor=get_leitor(id)
+    if leitor is None:
+        print("Não existe nenhum leitor com o id indicado.")
+        return
+        #Percorrer os campos do dicionário e permitir editar os dados
+    campos_nao_editar=["id"]
+    for campo,valor in leitor.items():
+        if campo in campos_nao_editar:
+            continue
+        print(valor)
+        novo=utils.le_texto(f"Novo {campo} ou enter para não alterar:")
+        if novo!="":
+            leitor[campo]=novo
+
+def apagar():
+    """Apaga um leitor com base no id"""
+    id_leitor=utils.le_numero("Id do leitor a apagar:")
+    leitor=get_leitor(id_leitor)
+    if leitor is  None:
+        print("Não existe nenhum leitor com o id indicado")
+        return
+    if leitor in emprestimos.leitores_com_livros():
+        print("Leitor não pode ser removido uma vez que tem livros emprestados.")
+        return
+    op=utils.le_texto(f"Tem a certeza que pretende remover o leitor {leitor}")
+    if op in ['s','S']:
+        leitores.remove(leitor)
+    print(f"Leitor removido com sucesso. Tem {len(leitores)} leitores.")

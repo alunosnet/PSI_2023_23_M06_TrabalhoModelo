@@ -5,6 +5,7 @@ import datetime
 emprestimos=[]
 
 def menu_emprestimos():
+    """Menu de empréstimos"""
     while True:
         utils.mostrar_menu("Menu empréstimos",["Emprestar","Devolver","Livros emprestados","Leitores com livros","Voltar"])
         op=utils.le_numero("Opção: ")
@@ -61,7 +62,8 @@ def emprestar():
     emprestimos.append(novo)
 
 def devolver():
-    id_livro=utils.le_numero("Id do livro a devovler:")
+    """Função para receber um livro emprestado"""
+    id_livro=utils.le_numero("Id do livro a devolver:")
     livro=livros.get_livro(id_livro)
     if livro is None:
         print("Esse livro não existe")
@@ -85,11 +87,17 @@ def devolver():
     print("Os dados da aplicação estão corrompidos. CHAME A ASSISTÊNCIA.")
 
 def livros_emprestados():
+    """Mostra os dados dos livros emprestados"""
     for livro in livros.livros:
         if livro['estado']=='emprestado':
             print(livro)
 
 def leitores_com_livros():
+    """Mostra os dados dos leitores com livros emprestados"""
+    """Devolve uma lista com os dados dos leitores"""
+    leitores_com_livros_emprestados=[]
     for livro in livros.livros:
         if livro['estado']=='emprestado':
             print(livro['leitor'])
+            leitores_com_livros_emprestados.append(livro['leitor'])
+    return leitores_com_livros_emprestados

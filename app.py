@@ -8,7 +8,7 @@ Requisitos:
     - Empréstimos/devoluções
     - Estatísticas (top livro, top mês, top leitores)
 """
-import utils, livros, leitores, emprestimos
+import utils, livros, leitores, emprestimos, estatisticas
 
 #em modo debug vamos fornecer leitores e livros de exemplo
 DEBUG=True
@@ -27,7 +27,7 @@ def menu_principal():
         if op==3:
             emprestimos.menu_emprestimos()
         if op==4:
-            pass
+            estatisticas.menu_estatisticas()
 
 def main():
     if DEBUG:
